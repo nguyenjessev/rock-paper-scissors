@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <script>
+
+        const shapes = ['rock', 'paper', 'scissors'];
+
+        function computerPlay() {
+            let num = Math.floor(Math.random()*3);
+
+            return shapes[num];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let resultCode = shapes.indexOf(playerSelection) - shapes.indexOf(computerSelection);
+
+            switch (true) {
+                case resultCode == 0:
+                    console.log("Draw! You both chose " + playerSelection);
+                    return 0;
+                case resultCode == -2:
+                case resultCode == 1:
+                    console.log("You win! " + ( playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) ) + " beats " + computerSelection);
+                    return 1;
+                default:
+                    console.log("You lose! " + ( playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) ) + " loses to " + computerSelection);
+                    return -1;
+            }
+        }
+
+        function game() {
+            let userScore = 0;
+            let computerScore = 0;
+
+            for (let i = 0; i < 5; i++) {
+                let userChoice = "";
+
+                do {
+                    userChoice = prompt("Choose rock, paper, or scissors:").toLowerCase();
+                    if (shapes.indexOf(userChoice) < 0) {
+                        console.log("Invalid input. Please choose rock, paper, or scissors");
+                    }
+                } while (shapes.indexOf(userChoice) < 0)
+
+                let result = playRound(userChoice, computerPlay());
+
+                if (result == -1) computerScore++;
+                if (result == 1) userScore++;
+            }
+
+            
+            console.log("\nFinal score:");
+            console.log("User: " + userScore);
+            console.log("Computer: " + computerScore);
+
+            if (userScore > computerScore) {
+                console.log("\nYou win!");
+            } else if (userScore < computerScore) {
+                console.log("\nYou lose!");
+            } else {
+                console.log("\nDraw!");
+            }
+        }
+
+    </script>
+</body>
+</html>
