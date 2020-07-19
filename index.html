@@ -31,6 +31,11 @@
             height: 4rem;
             background: hsl(240, 100%, 70%);
         }
+
+        #gameText {
+            font-size: 2rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +46,7 @@
     </div>
 
     <div id="gameText">
-
+        Click a button below to make your selection
     </div>
 
     <div id="selectionButtons">
@@ -77,20 +82,23 @@
 
         function playRound(e) {
             const computerSelection = computerPlay();
-            const playerSelection = this.dataset.key;
+            let playerSelection = this.dataset.key;
             const resultCode = shapes.indexOf(playerSelection) - shapes.indexOf(computerSelection);
+
+            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+            const gameText = document.querySelector('#gameText');
 
             switch (true) {
                 case resultCode == 0:
-                    console.log("Draw! You both chose " + playerSelection);
+                    gameText.textContent = `Draw! You both chose ${computerSelection}`;
                     break;
                 case resultCode == -2:
                 case resultCode == 1:
-                    console.log("You win! " + ( playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) ) + " beats " + computerSelection);
+                    gameText.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
                     userScore++;
                     break;
                 default:
-                    console.log("You lose! " + ( playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) ) + " loses to " + computerSelection);
+                    gameText.textContent = `You lose! ${playerSelection} loses to ${computerSelection}`;
                     computerScore++;
                     break;
             }
