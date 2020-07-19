@@ -13,18 +13,26 @@
         #scoreboard {
             display: flex;
             font-size: 3rem;
+            justify-content: center;
+        }
+
+        #scoreboard div {
+            margin: 0 1.2rem;
         }
     </style>
 </head>
 <body>
     <div id="scoreboard">
-        <div>You</div>
+        <div>YOU</div>
         <div><span id="playerScore">0</span> - <span id="computerScore">0</span></div>
         <div>CPU</div>
     </div>
-    <button type="button" class="selection" data-key="rock">Rock</button>
-    <button type="button" class="selection" data-key="paper">Paper</button>
-    <button type="button" class="selection" data-key="scissors">Scissors</button>
+
+    <div>
+        <button type="button" class="selection" data-key="rock">ROCK</button>
+        <button type="button" class="selection" data-key="paper">PAPER</button>
+        <button type="button" class="selection" data-key="scissors">SCISSORS</button>
+    </div>
 
     <script>
         const shapes = ['rock', 'paper', 'scissors'];
