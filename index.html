@@ -10,7 +10,6 @@
     <button type="button" class="selection" data-key="scissors">Scissors</button>
 
     <script>
-
         const shapes = ['rock', 'paper', 'scissors'];
 
         function computerPlay() {
@@ -19,8 +18,10 @@
             return shapes[num];
         }
 
-        function playRound(playerSelection, computerSelection) {
-            let resultCode = shapes.indexOf(playerSelection) - shapes.indexOf(computerSelection);
+        function playRound(e) {
+            const computerSelection = computerPlay();
+            const playerSelection = this.dataset.key;
+            const resultCode = shapes.indexOf(playerSelection) - shapes.indexOf(computerSelection);
 
             switch (true) {
                 case resultCode == 0:
@@ -70,6 +71,10 @@
             }
         }
 
+        const selectionButtons = document.querySelectorAll('.selection');
+        selectionButtons.forEach(button => {
+            button.addEventListener('click', playRound);
+        })
     </script>
 </body>
 </html>
