@@ -16,8 +16,20 @@
             justify-content: center;
         }
 
+        #selectionButtons {
+            display: flex;
+            font-size: 2rem;
+            justify-content: space-evenly;
+        }
+
         #scoreboard div {
             margin: 0 1.2rem;
+        }
+
+        button {
+            width: 20%;
+            height: 4rem;
+            background: hsl(240, 100%, 70%);
         }
     </style>
 </head>
@@ -28,7 +40,7 @@
         <div>CPU</div>
     </div>
 
-    <div>
+    <div id="selectionButtons">
         <button type="button" class="selection" data-key="rock">ROCK</button>
         <button type="button" class="selection" data-key="paper">PAPER</button>
         <button type="button" class="selection" data-key="scissors">SCISSORS</button>
