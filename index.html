@@ -58,20 +58,31 @@
     <script>
         const shapes = ['rock', 'paper', 'scissors'];
 
-        let userScore = 0, computerScore = 0;
+        let playerScore = 0, computerScore = 0;
 
         function endGame() {
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => {
                 button.disabled = true;
             })
+
+            const gameText = document.querySelector('#gameText');
+            const endSummary = document.createElement('p');
+
+            if (playerScore > computerScore) {
+                endSummary.textContent = `You won the series ${playerScore} to ${computerScore}!`;
+            } else {
+                endSummary.textContent = `You lost the series ${playerScore} to ${computerScore}!`;
+            }
+
+            gameText.appendChild(endSummary);
         }
 
         function updateScores() {
-            document.querySelector('#playerScore').textContent = userScore;
+            document.querySelector('#playerScore').textContent = playerScore;
             document.querySelector('#computerScore').textContent = computerScore;
 
-            if (userScore >= 5 || computerScore >= 5) endGame();
+            if (playerScore >= 5 || computerScore >= 5) endGame();
         }
 
         function computerPlay() {
@@ -95,7 +106,7 @@
                 case resultCode == -2:
                 case resultCode == 1:
                     gameText.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
-                    userScore++;
+                    playerScore++;
                     break;
                 default:
                     gameText.textContent = `You lose! ${playerSelection} loses to ${computerSelection}`;
@@ -105,42 +116,6 @@
 
             updateScores();
         }
-
-        /*
-        function game() {
-            let userScore = 0;
-            let computerScore = 0;
-
-            for (let i = 0; i < 5; i++) {
-                let userChoice = "";
-
-                do {
-                    userChoice = prompt("Choose rock, paper, or scissors:").toLowerCase();
-                    if (shapes.indexOf(userChoice) < 0) {
-                        console.log("Invalid input. Please choose rock, paper, or scissors");
-                    }
-                } while (shapes.indexOf(userChoice) < 0)
-
-                let result = playRound(userChoice, computerPlay());
-
-                if (result == -1) computerScore++;
-                if (result == 1) userScore++;
-            }
-
-            
-            console.log("\nFinal score:");
-            console.log("User: " + userScore);
-            console.log("Computer: " + computerScore);
-
-            if (userScore > computerScore) {
-                console.log("\nYou win!");
-            } else if (userScore < computerScore) {
-                console.log("\nYou lose!");
-            } else {
-                console.log("\nDraw!");
-            }
-        }
-        */
 
         const selectionButtons = document.querySelectorAll('.selection');
         selectionButtons.forEach(button => {
