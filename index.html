@@ -3,14 +3,33 @@
 <head>
     <title>Rock, Paper, Scissors</title>
     <meta charset="UTF-8"/>
+    <link href="normalize.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #scoreboard {
+            display: flex;
+            font-size: 3rem;
+        }
+    </style>
 </head>
 <body>
+    <div id="scoreboard">
+        <div>You</div>
+        <div><span id="playerScore">0</span> - <span id="computerScore">0</span></div>
+        <div>CPU</div>
+    </div>
     <button type="button" class="selection" data-key="rock">Rock</button>
     <button type="button" class="selection" data-key="paper">Paper</button>
     <button type="button" class="selection" data-key="scissors">Scissors</button>
 
     <script>
         const shapes = ['rock', 'paper', 'scissors'];
+
+        let userScore = 0, computerScore = 0;
 
         function computerPlay() {
             let num = Math.floor(Math.random()*3);
@@ -30,18 +49,21 @@
                 case resultCode == -2:
                 case resultCode == 1:
                     console.log("You win! " + ( playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) ) + " beats " + computerSelection);
+                    userScore++;
                     return 1;
                 default:
                     console.log("You lose! " + ( playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) ) + " loses to " + computerSelection);
+                    computerScore++;
                     return -1;
             }
         }
 
+        /*
         function game() {
             let userScore = 0;
             let computerScore = 0;
 
-            /*for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 5; i++) {
                 let userChoice = "";
 
                 do {
@@ -55,7 +77,7 @@
 
                 if (result == -1) computerScore++;
                 if (result == 1) userScore++;
-            }*/
+            }
 
             
             console.log("\nFinal score:");
@@ -70,6 +92,7 @@
                 console.log("\nDraw!");
             }
         }
+        */
 
         const selectionButtons = document.querySelectorAll('.selection');
         selectionButtons.forEach(button => {
