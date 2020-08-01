@@ -2,7 +2,7 @@
 This is my rock, paper, scissors project for The Odin Project
 
 ## Problems
-I had trouble figuring out how to determine a winner without using a bunch of if-else statements
+I had to create an interactive game that allowed the user to select an option, compare that option to an automatically generated CPU option, determine a winner, and keep score
 
 ## What I used
 HTML, CSS, JavaScript, `switch` statements, DOM manipulation through JS, template literals
